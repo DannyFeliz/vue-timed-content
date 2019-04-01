@@ -1,6 +1,24 @@
 {
   "name": "vue-timed-content",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "main": "./dist/vue-timed-content.umd.min.js",
+  "files": [
+    "dist/vue-timed-content.umd.min.js"
+  ],
+  "keywords": [
+    "vue",
+    "timed-content",
+    "timed",
+    "schedule",
+    "content"
+  ],
+  "author": "Danny Feliz <dannyfeliz08@gmail.com>",
+  "license": "MIT",
+  "bugs": "https://github.com/DannyFeliz/vue-timed-content/issues/new",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DannyFeliz/vue-timed-content"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
