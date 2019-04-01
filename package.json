@@ -7,7 +7,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.0.0",
+    "core-js": "^2.6.5",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
     "vue": "^2.6.10"
