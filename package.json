@@ -4,7 +4,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "bundle": "./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name vue-timed-content ./src/components/TimedContent.vue",
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "core-js": "^2.6.5",

@@ -6,7 +6,7 @@
       to="2019-04-30 11:22:33"
       timezone="America/Santo_Domingo"
     >
-      <p>Some content</p>
+      <p>Some secret content</p>
     </timed-content>
   </div>
 </template>
