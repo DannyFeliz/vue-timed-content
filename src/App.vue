@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import TimedContent from "./components/timed-content.vue";
+import TimedContent from "./components/TimedContent.vue";
 
 export default {
   name: "app",

@@ -40,10 +40,10 @@ export default {
   },
   created() {
     const dateTimeFormat = "YYYY-MM-DD HH:mm:ss";
-    const localTime = moment.tz(this.timezone);
     const from = moment.tz(this.from, dateTimeFormat, this.timezone);
     const to = moment.tz(this.to, dateTimeFormat, this.timezone);
-    this.shouldShow = localTime.isBetween(from, to);
+
+    this.shouldShow = moment.tz(this.timezone).isBetween(from, to);
   }
 };
 </script>
