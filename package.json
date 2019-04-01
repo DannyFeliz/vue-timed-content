@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
     "vue": "^2.6.6"
   },
