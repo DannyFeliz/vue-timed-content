@@ -41,6 +41,24 @@
   </tbody>
 </table>
 
+## Usage
+```vue
+<template>
+  <timed-content from="2019-04-01 00:00:00" to="2019-04-01 23:59:59" timezone="America/New_York">
+    <p>Some April Fools' Day joke</p>
+  </timed-content>
+</template>
+
+<script>
+import TimedContent from "vue-timed-content";
+
+export default {
+  components: {
+    TimedContent
+  }
+};
+</script>
+```
 
 ## Project setup
 
