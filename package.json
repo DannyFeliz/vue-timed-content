@@ -27,7 +27,7 @@
     "publish": "npm publish --access public"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
+    "core-js": "^3.0.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
     "vue": "^2.6.10"
