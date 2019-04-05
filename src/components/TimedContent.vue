@@ -39,6 +39,37 @@ export default {
       countdown: null
     };
   },
+  computed: {
+    toDate() {
+      const momentTo = moment(this.to);
+      const momentFrom = moment(this.from);
+
+      if (momentTo.isBefore(momentFrom)) {
+        throw new Error(
+          `The 'to' date is before the 'from' date. Please check: FROM ${
+            this.from
+          } TO ${this.to}`
+        );
+      }
+
+      return this.to;
+    },
+
+    fromDate() {
+      const momentTo = moment(this.to);
+      const momentFrom = moment(this.from);
+
+      if (momentFrom.isAfter(momentTo)) {
+        throw new Error(
+          `The 'from' date is after the 'to' date. Please check: FROM ${
+            this.from
+          } TO ${this.to}`
+        );
+      }
+
+      return this.from;
+    }
+  },
   created() {
     this.toggleContent();
 
@@ -50,8 +81,8 @@ export default {
   methods: {
     shouldShowContent() {
       const dateTimeFormat = "YYYY-MM-DD HH:mm:ss";
-      const from = moment.tz(this.from, dateTimeFormat, this.timezone);
-      const to = moment.tz(this.to, dateTimeFormat, this.timezone);
+      const from = moment.tz(this.fromDate, dateTimeFormat, this.timezone);
+      const to = moment.tz(this.toDate, dateTimeFormat, this.timezone);
 
       return moment.tz(this.timezone).isBetween(from, to);
     },
