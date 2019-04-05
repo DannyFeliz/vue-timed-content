@@ -87,11 +87,12 @@ export default {
       return moment.tz(this.timezone).isBetween(from, to);
     },
     toggleContent() {
+      const wasShown = this.shouldShow;
       this.shouldShow = this.shouldShowContent();
 
-      if (this.shouldShow) {
+      if (!wasShown && this.shouldShow) {
         this.$emit("show");
-      } else {
+      } else if (wasShown && !this.shouldShow) {
         this.$emit("hide");
       }
     }
