@@ -35,15 +35,35 @@ export default {
   },
   data() {
     return {
-      shouldShow: false
+      shouldShow: false,
+      countdown: null
     };
   },
   created() {
-    const dateTimeFormat = "YYYY-MM-DD HH:mm:ss";
-    const from = moment.tz(this.from, dateTimeFormat, this.timezone);
-    const to = moment.tz(this.to, dateTimeFormat, this.timezone);
+    this.toggleContent();
 
-    this.shouldShow = moment.tz(this.timezone).isBetween(from, to);
+    this.countdown = setInterval(() => this.toggleContent(), 1000);
+  },
+  beforeDestroy() {
+    clearInterval(this.countdown);
+  },
+  methods: {
+    shouldShowContent() {
+      const dateTimeFormat = "YYYY-MM-DD HH:mm:ss";
+      const from = moment.tz(this.from, dateTimeFormat, this.timezone);
+      const to = moment.tz(this.to, dateTimeFormat, this.timezone);
+
+      return moment.tz(this.timezone).isBetween(from, to);
+    },
+    toggleContent() {
+      this.shouldShow = this.shouldShowContent();
+
+      if (this.shouldShow) {
+        this.$emit("show");
+      } else {
+        this.$emit("hide");
+      }
+    }
   }
 };
 </script>
