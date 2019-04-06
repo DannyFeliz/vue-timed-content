@@ -1,6 +1,8 @@
 # vue-timed-content
-Shows or hides a content based on a given time range
+>Shows or hides a content based on a given time range
 
+[<img src="https://img.shields.io/npm/dt/vue-timed-content.svg">](https://www.npmjs.com/package/vue-timed-content)
+[<img src="https://img.shields.io/npm/v/vue-timed-content.svg">](https://www.npmjs.com/package/vue-timed-content)
 
 ## Demo
 
