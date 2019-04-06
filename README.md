@@ -1,5 +1,5 @@
 # vue-timed-content
-Sahows or hides a content based on a given time range
+Shows or hides a content based on a given time range
 
 
 ## Demo
