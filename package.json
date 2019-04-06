@@ -1,6 +1,6 @@
 {
   "name": "vue-timed-content",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "./dist/vue-timed-content.umd.min.js",
   "files": [
     "dist/vue-timed-content.umd.min.js"

@@ -41,6 +41,29 @@
   </tbody>
 </table>
 
+
+## Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>show</td>
+      <td>When content goes from being hidden to visible</td>
+    </tr>
+    <tr>
+      <td>hide</td>
+      <td>When content goes from being visible to hidden</td>
+    </tr>
+
+  </tbody>
+</table>
+
 ## Usage
 ```vue
 <template>
