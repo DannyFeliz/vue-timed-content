@@ -16,7 +16,6 @@
     "dist/vue-timed-content.umd.min.js"
   ],
   "dependencies": {
-    "luxon": "^1.23.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

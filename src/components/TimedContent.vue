@@ -1,32 +1,26 @@
 <template>
   <span v-if="shouldShow">
     <slot />
-    <p>From: {{ formattedFrom }}</p>
-    <p>To: {{ formattedTo }}</p>
   </span>
 </template>
 
 <script>
-// @ts-check
-import { DateTime } from "luxon";
-import { isValidDate, isValidTimeZone } from "../utils/helpers";
+import { isValidTimeZone } from "../utils/helpers";
 
 export default {
   name: "TimedContent",
   props: {
     from: {
       type: Date,
-      required: true,
-      validator: isValidDate
+      required: true
     },
     to: {
       type: Date,
-      required: true,
-      validator: isValidDate
+      required: true
     },
-    timezone: {
+    timeZone: {
       type: String,
-      default: "America/Los_Angeles",
+      default: Intl.DateTimeFormat().resolvedOptions().timeZone,
       validator: isValidTimeZone
     }
   },
@@ -34,8 +28,8 @@ export default {
     return {
       shouldShow: false,
       countdown: null,
-      formattedTo: DateTime.fromJSDate(this.to).setZone(this.timezone),
-      formattedFrom: DateTime.fromJSDate(this.from).setZone(this.timezone)
+      formattedFrom: new Date(this.from.toLocaleString("en-US", { timeZone: this.timeZone })),
+      formattedTo: new Date(this.to.toLocaleString("en-US", { timeZone: this.timeZone }))
     };
   },
   created() {
@@ -48,8 +42,8 @@ export default {
   },
   methods: {
     shouldShowContent() {
-      const currentDate = DateTime.local();
-      return currentDate >= this.formattedFrom && currentDate <= this.formattedTo;
+      const currentDate = new Date().getTime();
+      return currentDate >= this.formattedFrom.getTime() && currentDate <= this.formattedTo.getTime();
     },
     toggleContent() {
       const wasShown = this.shouldShow;
@@ -66,11 +60,11 @@ export default {
       clearInterval(this.countdown);
     },
     checkDatesValidity() {
-      if (this.formattedFrom > this.formattedTo) {
+      if (this.formattedFrom.getTime() > this.formattedTo.getTime()) {
         throw new Error(`The 'from' date is after the 'to' date. Please check: FROM ${this.from} TO ${this.to}`);
       }
 
-      if (this.formattedTo < this.formattedFrom) {
+      if (this.formattedTo.getTime() < this.formattedFrom.getTime()) {
         throw new Error(`The 'to' date is before the 'from' date. Please check: FROM ${this.from} TO ${this.to}`);
       }
     }
