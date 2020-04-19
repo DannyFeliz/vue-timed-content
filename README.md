@@ -1,5 +1,6 @@
 # vue-timed-content
->Shows or hides a content based on a given time range
+
+> Shows or hides a content based on a given time range
 
 [<img src="https://img.shields.io/npm/dt/vue-timed-content.svg">](https://www.npmjs.com/package/vue-timed-content)
 [<img src="https://img.shields.io/npm/v/vue-timed-content.svg">](https://www.npmjs.com/package/vue-timed-content)
@@ -24,27 +25,26 @@
     <tr>
       <td>from</td>
       <td>Initial date</td>
-      <td>Date | String | Number</td>
+      <td>Date</td>
       <td>true</td>
       <td></td>
     </tr>
     <tr>
       <td>to</td>
       <td>End date</td>
-      <td>Date | String | Number</td>
+      <td>Date</td>
       <td>true</td>
       <td></td>
     </tr>
     <tr>
-      <td>timezone</td>
+      <td>time-zone</td>
       <td>Timezone used to calculate if the dates are in range</td>
       <td>String</td>
       <td>false</td>
-      <td>America/Los_Angeles</td>
+      <td>Your local timezone</td>
     </tr>
   </tbody>
 </table>
-
 
 ## Events
 
@@ -69,9 +69,10 @@
 </table>
 
 ## Usage
+
 ```vue
 <template>
-  <timed-content from="2019-04-01 00:00:00" to="2019-04-01 23:59:59" timezone="America/New_York">
+  <timed-content from="2020-04-01 00:00:00" to="2020-04-01 23:59:59" time-zone="America/New_York">
     <p>Some April Fools' Day joke</p>
   </timed-content>
 </template>
