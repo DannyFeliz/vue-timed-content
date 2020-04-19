@@ -1,10 +1,41 @@
 {
   "name": "vue-timed-content",
   "version": "0.2.1",
+  "author": "Danny Feliz <dannyfeliz08@gmail.com>",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:unit:watch": "vue-cli-service test:unit --watch",
+    "lint": "vue-cli-service lint",
+    "bundle": "./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name vue-timed-content ./src/components/TimedContent.vue",
+    "publish": "npm publish --access public"
+  },
   "main": "./dist/vue-timed-content.umd.min.js",
   "files": [
     "dist/vue-timed-content.umd.min.js"
   ],
+  "dependencies": {
+    "luxon": "^1.23.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.5",
+    "@vue/cli-plugin-eslint": "^3.5.1",
+    "@vue/cli-plugin-unit-jest": "^4.3.1",
+    "@vue/cli-service": "^3.5.3",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "1.0.0-beta.31",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "lint-staged": "^8.1.7",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "bugs": "https://github.com/DannyFeliz/vue-timed-content/issues/new",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
   "keywords": [
     "vue",
     "timed-content",
@@ -12,43 +43,15 @@
     "schedule",
     "content"
   ],
-  "author": "Danny Feliz <dannyfeliz08@gmail.com>",
   "license": "MIT",
-  "bugs": "https://github.com/DannyFeliz/vue-timed-content/issues/new",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DannyFeliz/vue-timed-content"
-  },
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "bundle": "./node_modules/@vue/cli-service/bin/vue-cli-service.js build --target lib --name vue-timed-content ./src/components/TimedContent.vue",
-    "publish": "npm publish --access public"
-  },
-  "dependencies": {
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
-    "vue": "^2.6.10"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.5",
-    "@vue/cli-plugin-eslint": "^3.5.1",
-    "@vue/cli-service": "^3.5.3",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "lint-staged": "^8.1.7",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DannyFeliz/vue-timed-content"
   }
 }

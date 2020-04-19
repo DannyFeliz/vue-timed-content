@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <p>Outside</p>
-    <timed-content
-      :from="new Date()"
-      to="2019-04-30 11:22:33"
-      timezone="America/Santo_Domingo"
-    >
+    <timed-content :from="new Date('2019/05/11 11:23:12')" :to="new Date('2020/05/11 11:23:12')">
       <p>Some secret content</p>
     </timed-content>
   </div>
@@ -13,7 +9,6 @@
 
 <script>
 import TimedContent from "./components/TimedContent.vue";
-
 export default {
   name: "app",
   components: {
