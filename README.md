@@ -7,7 +7,7 @@
 
 ## Demo
 
-[![Edit Vue Timed Content Demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/754n8y281?fontsize=14)
+[![Edit Vue Timed Content Demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-timed-content-demo-k3b5c?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.vue&theme=dark)
 
 ## Props
 
@@ -72,9 +72,16 @@
 
 ```vue
 <template>
-  <timed-content from="2020-04-01 00:00:00" to="2020-04-01 23:59:59" time-zone="America/New_York">
-    <p>Some April Fools' Day joke</p>
-  </timed-content>
+  <div>
+    <p>If you don't see anything it's because you are not in the range to be able view the content</p>
+    <timed-content
+      :from="new Date('2020/04/01 00:00:00')"
+      :to="new Date('2020/04/01 23:59:59')"
+      time-zone="America/Santo_Domingo"
+    >
+      <p>Some April Fools' Day joke 🃏</p>
+    </timed-content>
+  </div>
 </template>
 
 <script>
