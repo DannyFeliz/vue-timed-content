@@ -1,6 +1,6 @@
 {
   "yarn": false,
   "contents": "dist",
-  "tests": false,
+  "tests": true,
   "publish": false
 }
