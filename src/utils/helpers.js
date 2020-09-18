@@ -12,3 +12,11 @@ export function isValidTimeZone(timeZone) {
     return false;
   }
 }
+
+/**
+ * @param {Date} date
+ * @returns Boolean
+ */
+export function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.valueOf());
+}

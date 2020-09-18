@@ -1,22 +1,24 @@
 <template>
-  <span v-if="shouldShow">
+  <span v-if="shouldShowContent">
     <slot />
   </span>
 </template>
 
 <script>
-import { isValidTimeZone } from "../utils/helpers";
+import { isValidTimeZone, isValidDate } from "../utils/helpers";
 
 export default {
   name: "TimedContent",
   props: {
     from: {
       type: Date,
-      required: true
+      required: true,
+      validator: isValidDate
     },
     to: {
       type: Date,
-      required: true
+      required: true,
+      validator: isValidDate
     },
     timeZone: {
       type: String,
@@ -26,47 +28,70 @@ export default {
   },
   data() {
     return {
-      shouldShow: false,
       countdown: null,
-      formattedFrom: new Date(this.from.toLocaleString("en-US", { timeZone: this.timeZone })),
-      formattedTo: new Date(this.to.toLocaleString("en-US", { timeZone: this.timeZone }))
+      currentDate: new Date().getTime()
     };
   },
   created() {
-    this.checkDatesValidity();
-    this.toggleContent();
-    this.countdown = setInterval(() => this.toggleContent(), 1000);
+    this.init();
   },
   beforeDestroy() {
-    clearInterval(this.countdown);
+    this.stopCountdown();
   },
-  methods: {
-    shouldShowContent() {
-      const currentDate = new Date().getTime();
-      return currentDate >= this.formattedFrom.getTime() && currentDate <= this.formattedTo.getTime();
+  watch: {
+    from() {
+      this.init();
     },
-    toggleContent() {
-      const wasShown = this.shouldShow;
-      this.shouldShow = this.shouldShowContent();
-
-      if (!wasShown && this.shouldShow) {
+    to() {
+      this.init();
+    },
+    timeZone() {
+      this.init();
+    },
+    shouldShowContent() {
+      if (this.shouldShowContent) {
         this.$emit("show");
-      } else if (wasShown && !this.shouldShow) {
+      } else {
         this.$emit("hide");
         this.stopCountdown();
+      }
+    }
+  },
+  computed: {
+    convertedFrom() {
+      return new Date(this.from.toLocaleString("en-US", { timeZone: this.timeZone }));
+    },
+    formattedTo() {
+      return new Date(this.to.toLocaleString("en-US", { timeZone: this.timeZone }));
+    },
+    shouldShowContent() {
+      return this.currentDate >= this.convertedFrom.getTime() && this.currentDate <= this.formattedTo.getTime();
+    }
+  },
+  methods: {
+    init() {
+      if (this.countdown) {
+        this.stopCountdown();
+      }
+
+      this.checkDatesValidity();
+
+      this.countdown = setInterval(() => {
+        this.currentDate = new Date().getTime();
+        this.checkDatesValidity();
+      }, 1000);
+    },
+    checkDatesValidity() {
+      if (this.convertedFrom.getTime() > this.formattedTo.getTime()) {
+        throw new Error("The 'from' date is after the 'to' date");
+      }
+
+      if (this.formattedTo.getTime() < this.convertedFrom.getTime()) {
+        throw new Error("The 'to' date is before the 'from' date.");
       }
     },
     stopCountdown() {
       clearInterval(this.countdown);
-    },
-    checkDatesValidity() {
-      if (this.formattedFrom.getTime() > this.formattedTo.getTime()) {
-        throw new Error(`The 'from' date is after the 'to' date. Please check: FROM ${this.from} TO ${this.to}`);
-      }
-
-      if (this.formattedTo.getTime() < this.formattedFrom.getTime()) {
-        throw new Error(`The 'to' date is before the 'from' date. Please check: FROM ${this.from} TO ${this.to}`);
-      }
     }
   }
 };
