@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <p v-if="countdown">The content will disapear in: {{ this.countdown }} secs</p>
-    <p v-else>The content is hidden</p>
     <timed-content :from="from" :to="to" time-zone="America/Santo_Domingo">
       <p>Some secret content</p>
     </timed-content>
@@ -9,6 +7,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import TimedContent from "./components/TimedContent.vue";
 export default {
   name: "app",
@@ -17,19 +16,9 @@ export default {
   },
   data() {
     return {
-      from: new Date(),
-      to: new Date(),
-      countdown: 5
+      from: moment().add("seconds", 5).toDate(),
+      to: moment().add("seconds", 10).toDate()
     };
-  },
-  created() {
-    this.to.setSeconds(this.to.getSeconds() + this.countdown);
-    const interval = setInterval(() => {
-      this.countdown--;
-      if (!this.countdown) {
-        clearInterval(interval);
-      }
-    }, 1000);
   }
 };
 </script>
