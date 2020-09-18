@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { isValidTimeZone, isValidDate } from "../utils/helpers";
+import { getTimeZonedDate, isValidTimeZone, isValidDate } from "../utils/helpers";
 
 export default {
   name: "TimedContent",
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       countdown: null,
-      currentDate: new Date().getTime()
+      currentDate: getTimeZonedDate(new Date(), this.timeZone).getTime()
     };
   },
   created() {
@@ -59,10 +59,10 @@ export default {
   },
   computed: {
     convertedFrom() {
-      return new Date(this.from.toLocaleString("en-US", { timeZone: this.timeZone }));
+      return getTimeZonedDate(this.from, this.timeZone);
     },
     formattedTo() {
-      return new Date(this.to.toLocaleString("en-US", { timeZone: this.timeZone }));
+      return getTimeZonedDate(this.to, this.timeZone);
     },
     shouldShowContent() {
       return this.currentDate >= this.convertedFrom.getTime() && this.currentDate <= this.formattedTo.getTime();
@@ -77,7 +77,7 @@ export default {
       this.checkDatesValidity();
 
       this.countdown = setInterval(() => {
-        this.currentDate = new Date().getTime();
+        this.currentDate = getTimeZonedDate(new Date(), this.timeZone).getTime();
         this.checkDatesValidity();
       }, 1000);
     },
