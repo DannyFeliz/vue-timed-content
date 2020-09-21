@@ -24,6 +24,10 @@ export default {
       type: String,
       default: Intl.DateTimeFormat().resolvedOptions().timeZone,
       validator: isValidTimeZone
+    },
+    convertTimestamp: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -59,10 +63,10 @@ export default {
   },
   computed: {
     convertedFrom() {
-      return getTimeZonedDate(this.from, this.timeZone);
+      return this.convertTimestamp ? getTimeZonedDate(this.from, this.timeZone) : this.from;
     },
     formattedTo() {
-      return getTimeZonedDate(this.to, this.timeZone);
+      return this.convertTimestamp ? getTimeZonedDate(this.to, this.timeZone) : this.to;
     },
     shouldShowContent() {
       return this.currentDate >= this.convertedFrom.getTime() && this.currentDate <= this.formattedTo.getTime();
